@@ -1,8 +1,3 @@
-html {
-  width: 100%;
-  height: 100%;
-}
-
 .block {
     position: absolute;
     background-color: #ff0000;
@@ -20,15 +15,24 @@ html {
 
     opacity: 1;
     z-index: 0;
+}
+
+.block:hover {
     cursor: move;
 }
 
-.bloc {
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 10px;
-  background-color: #f9f9f9;
-  cursor: move;
+#images {
+  width: 100px;
+  height: 100px;
+  background-color: #0000ff;
+  top: 0px;
+  left: 0px;
+  padding: 100px
+
+}
+
+#images:hover {
+  cursor: grab;
 }
 
   #b {
@@ -41,12 +45,4 @@ html {
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
-}
-
-.selectEnable {
-    -webkit-user-select: text;
-    -khtml-user-select: text;
-    -moz-user-select: text;
-    -o-user-select: text;
-    user-select: text;
 }

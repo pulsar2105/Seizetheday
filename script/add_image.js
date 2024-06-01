@@ -15,7 +15,7 @@ $(document).ready(function() {
             });
 
             move_blocks();
-            //move_page();
+            move_page();
         },
         error: function(err) {
             console.error('Error fetching files:', err);
