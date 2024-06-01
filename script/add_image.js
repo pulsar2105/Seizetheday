@@ -14,7 +14,8 @@ $(document).ready(function() {
                 $("#images" ).append("<img class='block' id='" + getRandomInt(100000) + "' src='images/" + file + "'/>");
             });
 
-            move();
+            move_blocks();
+            //move_page();
         },
         error: function(err) {
             console.error('Error fetching files:', err);

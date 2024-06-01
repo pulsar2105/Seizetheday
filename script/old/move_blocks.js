@@ -1,6 +1,4 @@
-function move() {
-    console.log("dfgrg");
-
+function move_blocks() {
     $(document).ready(function () {
         var clickMousePos = {
             x: -1,
