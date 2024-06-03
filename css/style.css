@@ -7,7 +7,6 @@
     min-height: 20px;
 
     border-radius:7px;
-    border: 2px solid;
 
     top: 0px;
     left: 0px;
@@ -19,6 +18,9 @@
 
 .block:hover {
     cursor: move;
+    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, .5);
+    transition-duration: 0.25s;
+    transition-property: box-shadow;
 }
 
 #images {

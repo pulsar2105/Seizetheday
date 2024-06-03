@@ -14,11 +14,16 @@ $(document).ready(function() {
                 $("#images" ).append("<img class='block' id='" + getRandomInt(100000) + "' src='images/" + file + "'/>");
             });
 
-            move_blocks();
-            move_page();
+            update();
         },
         error: function(err) {
             console.error('Error fetching files:', err);
         }
     });
 });
+
+function update() {
+    move_blocks();
+    move_page();
+    z_index_set();
+}
