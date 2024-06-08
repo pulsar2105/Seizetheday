@@ -1,3 +1,7 @@
+html {
+  background-color: #fefefe;
+}
+
 .block {
     position: absolute;
     background-color: #ff0000;
