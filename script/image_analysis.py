@@ -2,10 +2,19 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 import colorsys
+import os
+
+# we list filles in the directory
+def list_files(directory):
+    return os.listdir(directory)
 
 # import image
 def import_image(image_path):
     image = Image.open(image_path)
+    # convert gif to rgb
+    if image.mode == "P":
+        image = image.convert("RGB")
+    image.seek(0)
     return image
 
 # convert image to numpy array
@@ -30,20 +39,14 @@ def polar_to_cartesian(r, theta):
     y = r * np.sin(theta)
     return x, y
 
-path = "../Seizetheday/images/GOzNQ8nWEAAPYHB.jpg"
-image = import_image(path)
-image_array = image_to_array(image)
-average_shade = main_shade(image_array)
-hsv = rgb_to_hsv(average_shade)
 
-print(image_array.shape)
-print(average_shade)
-print(hsv)
+path = "../Seizetheday/images/"
+files = list_files(path)
+images = [import_image(path + file) for file in files]
+images_array = [image_to_array(image) for image in images]
+averages_shade = [main_shade(image_array) for image_array in images_array]
+hsv = [rgb_to_hsv(average_shade) for average_shade in averages_shade]
 
-# display graphicaly shade of image and average shade in a single window
-
-plt.subplot(1, 2, 1)
-plt.imshow(image_array)
-plt.subplot(1, 2, 2)
-plt.imshow(np.full(image_array.shape, average_shade, dtype=int))
-plt.show()
+for i in range(len(files)):
+    with open(path + "hsv_" + files[i] + ".txt", "w+") as file:
+        file.write(str(hsv[i][0]) + " " + str(hsv[i][1]) + " " + str(hsv[i][2]))

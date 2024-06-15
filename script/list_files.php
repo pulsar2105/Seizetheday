@@ -1,5 +1,6 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+// we return the list of files in the images directory
+if ($_SERVER["REQUEST_METHOD"] === "POST" or true) {
     $directory = "../images"; // path to search
     $files = array();
 
