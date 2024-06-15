@@ -23,6 +23,7 @@ $(document).ready(function() {
 });
 
 function update() {
+    sort_color_images();
     move_blocks();
     move_page();
     z_index_set();

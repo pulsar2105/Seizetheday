@@ -11,7 +11,7 @@ function z_index_set() {
                 }
             });
 
-            console.log("min_z_index: " + min_z_index);
+            //.log("min_z_index: " + min_z_index);
 
             // set the z-index of the clicked block minus the minimum z-index
             if (min_z_index > 0) {

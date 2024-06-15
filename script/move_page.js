@@ -1,12 +1,12 @@
 function move_page() {
     $(document).ready(function () {
-        console.log("move_page");
+        //console.log("move_page");
         $("#images").draggable();
     });
 
     // reset the position of the dragged zone and add a offset to the blocks inside
     $("#images").on("mouseup", function(event) {
-        console.log("mouseup");
+        //console.log("mouseup");
         // get the position of the dragged zone
         var top = parseInt($(this).css("top"), 10);
         var left = parseInt($(this).css("left"), 10);

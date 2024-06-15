@@ -11,16 +11,13 @@ def list_files(directory):
 # import image
 def import_image(image_path):
     image = Image.open(image_path)
-    # convert gif to rgb
-    if image.mode == "P":
+    # convert rgb
+    if image.mode != "RGB":
         image = image.convert("RGB")
     image.seek(0)
-    return image
+    image = np.array(image)
 
-# convert image to numpy array
-def image_to_array(image):
-    image_array = np.array(image)
-    return image_array
+    return image
 
 # calculate average shade of image (RGB)
 def main_shade(image):
@@ -42,11 +39,12 @@ def polar_to_cartesian(r, theta):
 
 path = "../Seizetheday/images/"
 files = list_files(path)
-images = [import_image(path + file) for file in files]
-images_array = [image_to_array(image) for image in images]
-averages_shade = [main_shade(image_array) for image_array in images_array]
+# import image only if it is a valid image
+images = [import_image(path + file) for file in files if file[-4:] != ".txt"]
+
+averages_shade = [main_shade(image) for image in images]
 hsv = [rgb_to_hsv(average_shade) for average_shade in averages_shade]
 
-for i in range(len(files)):
+for i in range(len(images)):
     with open(path + "hsv_" + files[i] + ".txt", "w+") as file:
         file.write(str(hsv[i][0]) + " " + str(hsv[i][1]) + " " + str(hsv[i][2]))

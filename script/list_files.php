@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" or true) {
     if (is_dir($directory)) {
         if ($dirHandle = opendir($directory)) {
             while (($file = readdir($dirHandle)) !== false) {
-                if ($file != "." && $file != "..") {
+                if ($file != "." && $file != ".." && !preg_match('/\.txt$/', $file)) {
                     $files[] = $file;
                 }
             }
