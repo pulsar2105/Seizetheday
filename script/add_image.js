@@ -11,7 +11,7 @@ $(document).ready(function() {
             fileList.empty();
             data.forEach(function(file) {
                 //console.log(file);
-                $("#images" ).append("<img class='block' id='" + getRandomInt(100000) + "' src='images/" + file + "'/>");
+                $("#images" ).append("<img class='block' id='" + getRandomInt(1000000) + "' src='images/" + file + "'/>");
             });
 
             update();
