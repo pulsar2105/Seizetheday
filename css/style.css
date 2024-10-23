@@ -4,7 +4,7 @@ html {
 
 .block {
     position: absolute;
-    background-color: #ff0000;
+    background-color: #eeeeeeee;
     max-width: 200px;
     max-height: 200px;
     min-width: 50px;
