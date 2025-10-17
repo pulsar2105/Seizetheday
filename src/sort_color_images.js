@@ -1,16 +1,14 @@
 function sort_color_images() {
-    $(document).ready(function () {
+    $(function() {
         // get the list of files and their average color
         $.ajax({
-            url: "src/list_files_colors.php",
+            dataType: "json",
+            url: "images/hsv_images.json",
             method: "POST",
             success: function (data) {
-                //console.log(data);
+                // console.log(data);
                 // calculate position with the average color
                 for (var key in data) {
-                    //console.log(key);
-                    //console.log(data[key]);
-
                     // modify the image position
                     // if there is a space in the file name, it will not work
                     if (key.indexOf(" ") >= 0) {
@@ -18,11 +16,10 @@ function sort_color_images() {
                         continue;
                     } else {
                         var img = $("#images img[src='images/" + key + "']");
-                        //console.log(parseFloat(data[key].split(" ")[0]))
 
-                        h = parseFloat(data[key].split(" ")[0])
-                        //s = parseFloat(data[key].split(" ")[1])
-                        v = parseFloat(data[key].split(" ")[2]) * 5
+                        h = parseFloat(data[key]["hue"])
+                        //s = parseFloat(data[key]["saturation"])
+                        v = parseFloat(data[key]["value"]) * 4
 
                         img.css({
                             "left": v * Math.cos(h * Math.PI * 2) + window.innerWidth / 2,

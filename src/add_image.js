@@ -2,17 +2,20 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
-$(document).ready(function() {
+$(function() {
     $.ajax({
-        url: "src/list_files.php",
+        dataType: "json",
+        url: "images/hsv_images.json",
         method: 'POST',
         success: function(data) {
-            var fileList = $('#file-list');
-            fileList.empty();
-            data.forEach(function(file) {
-                //console.log(file);
-                $("#images" ).append("<img class='block' id='" + getRandomInt(1000000) + "' src='images/" + file + "'/>");
-            });
+            for (var key in data) {
+                if (key.indexOf(" ") >= 0) {
+                    console.error("File name contains a space:", key);
+                    continue;
+                } else {
+                    $("#images" ).append("<img class='block' id='" + getRandomInt(1000000) + "' src='images/" + key + "'/>");
+                };
+            }
 
             update();
         },

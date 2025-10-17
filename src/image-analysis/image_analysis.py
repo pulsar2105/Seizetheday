@@ -30,7 +30,7 @@ def main_shade(image):
 
 # convert rgb to hsv
 def rgb_to_hsv(rgb):
-    return  colorsys.rgb_to_hsv(rgb[0], rgb[1], rgb[2])
+    return colorsys.rgb_to_hsv(rgb[0], rgb[1], rgb[2])
 
 # convert polar to cartesian
 def polar_to_cartesian(r, theta):
@@ -41,11 +41,21 @@ def polar_to_cartesian(r, theta):
 path = "../../images/"
 files = list_files(path)
 # import image only if it is a valid image
-images = [import_image(path + file) for file in files if file[-4:] != ".txt"]
+images_paths = [file for file in files if file[-4:] != ".txt" and file[-5:] != ".json"]
+images = [import_image(path + file) for file in files if file[-4:] != ".txt" and file[-5:] != ".json"]
 
 averages_shade = [main_shade(image) for image in tqdm(images)]
 hsv = [rgb_to_hsv(average_shade) for average_shade in averages_shade]
 
+# save in a unique json file
+json_img_hsv = {}
 for i in tqdm(range(len(images))):
-    with open(path + "hsv_" + files[i] + ".txt", "w+") as file:
-        file.write(str(hsv[i][0]) + " " + str(hsv[i][1]) + " " + str(hsv[i][2]))
+    json_img_hsv[images_paths[i]] = {
+        "hue": float(hsv[i][0]),
+        "saturation": float(hsv[i][1]),
+        "value": int(hsv[i][2])
+    }
+# convert dict to json
+# save json to file
+with open(path + "hsv_images.json", "w+") as file:
+    json.dump(json_img_hsv, file)
