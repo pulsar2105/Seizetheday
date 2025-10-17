@@ -3,6 +3,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 import colorsys
+import json
 import os
 
 # we list filles in the directory
@@ -37,8 +38,7 @@ def polar_to_cartesian(r, theta):
     y = r * np.sin(theta)
     return x, y
 
-
-path = "../images/"
+path = "../../images/"
 files = list_files(path)
 # import image only if it is a valid image
 images = [import_image(path + file) for file in files if file[-4:] != ".txt"]

@@ -4,7 +4,7 @@ function getRandomInt(max) {
 
 $(document).ready(function() {
     $.ajax({
-        url: "script/list_files.php",
+        url: "src/list_files.php",
         method: 'POST',
         success: function(data) {
             var fileList = $('#file-list');

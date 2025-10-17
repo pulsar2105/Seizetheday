@@ -2,7 +2,7 @@ function sort_color_images() {
     $(document).ready(function () {
         // get the list of files and their average color
         $.ajax({
-            url: "script/list_files_colors.php",
+            url: "src/list_files_colors.php",
             method: "POST",
             success: function (data) {
                 //console.log(data);
